@@ -1,9 +1,9 @@
-import ts from 'typescript';
-import fs from 'fs';
+import ts from "typescript";
+import fs from "fs";
 
 function makeFactorialFunction() {
-  const functionName = ts.factory.createIdentifier('factorial');
-  const paramName = ts.factory.createIdentifier('n');
+  const functionName = ts.factory.createIdentifier("factorial");
+  const paramName = ts.factory.createIdentifier("n");
   const parameter = ts.factory.createParameterDeclaration(
     /*decorators*/ undefined,
     /*modifiers*/ undefined,
@@ -53,17 +53,17 @@ function makeFactorialFunction() {
 }
 
 const resultFile = ts.createSourceFile(
-  'someFileName.ts',
-  '',
+  "someFileName.ts",
+  "",
   ts.ScriptTarget.Latest,
   /*setParentNodes*/ false,
   ts.ScriptKind.TS,
 );
-const printer = ts.createPrinter({newLine: ts.NewLineKind.LineFeed});
+const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
 
 const result = printer.printNode(
   ts.EmitHint.Unspecified,
   makeFactorialFunction(),
   resultFile,
 );
-fs.writeFileSync('example.ts', result);
+fs.writeFileSync("example.ts", result);

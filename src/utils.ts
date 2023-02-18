@@ -1,12 +1,12 @@
-import ts, {NodeFlags} from 'typescript';
-import fs from 'fs';
+import ts, { NodeFlags } from "typescript";
+import fs from "fs";
 
 export const makeVariableInitializer = (
   name: string,
   to: ts.Expression,
-  type: 'let' | 'const',
+  type: "let" | "const",
 ): ts.VariableDeclarationList => {
-  const flag = type == 'let' ? NodeFlags.Let : NodeFlags.Const;
+  const flag = type == "let" ? NodeFlags.Let : NodeFlags.Const;
 
   const id = ts.factory.createIdentifier(name);
   const varDec = ts.factory.createVariableDeclaration(
@@ -20,11 +20,11 @@ export const makeVariableInitializer = (
 };
 
 export const writeCodeToFile = (statements: ts.Statement[], file: string) => {
-  fs.writeFileSync('test.ts', '');
+  fs.writeFileSync("test.ts", "");
 
   const resultFile = ts.createSourceFile(
-    'someFileName.ts',
-    '',
+    "someFileName.ts",
+    "",
     ts.ScriptTarget.Latest,
     /*setParentNodes*/ false,
     ts.ScriptKind.TS,
@@ -40,7 +40,7 @@ export const writeCodeToFile = (statements: ts.Statement[], file: string) => {
       statement,
       resultFile,
     );
-    result += '\n';
+    result += "\n";
     fs.appendFileSync(file, result);
   }
 };

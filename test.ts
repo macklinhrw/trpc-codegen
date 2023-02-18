@@ -1,3 +1,3 @@
 let kVar = {
-    test: 1
+  test: 1,
 };
