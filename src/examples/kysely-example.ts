@@ -1,3 +1,5 @@
+//eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
 import { Pool } from "pg";
 import {
   Kysely,
@@ -87,6 +89,6 @@ async function demo() {
 
 // You can extract the select, insert and update interfaces like this
 // if you want (you don't need to):
-export type Person = Selectable<PersonTable>;
-export type InsertablePerson = Insertable<PersonTable>;
-export type UpdateablePerson = Updateable<PersonTable>;
+type Person = Selectable<PersonTable>;
+type InsertablePerson = Insertable<PersonTable>;
+type UpdateablePerson = Updateable<PersonTable>;

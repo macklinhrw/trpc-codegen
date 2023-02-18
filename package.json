@@ -1,18 +1,21 @@
 {
   "scripts": {
     "dev": "tsx ./src/index.ts",
+    "db": "tsx ./src/db/kysely.ts",
     "test": "tsx ./src/test.ts",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "codegen": "kysely-codegen --out-file ./src/db/types.d.ts"
   },
   "devDependencies": {
     "@types/node": "^18.14.0",
-    "@types/pg": "^8.6.6",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.52.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "kysely-codegen": "^0.9.0",
+    "mysql2": "^3.1.2",
     "prettier": "^2.8.4",
     "tsx": "^3.12.3",
     "typescript": "*"
@@ -20,8 +23,8 @@
   "dependencies": {
     "@prisma/client": "^4.10.1",
     "@trpc/server": "^10.12.0",
+    "dotenv": "^16.0.3",
     "kysely": "^0.23.4",
-    "pg": "^8.9.0",
     "prisma": "^4.10.1",
     "zod": "^3.20.6"
   }
