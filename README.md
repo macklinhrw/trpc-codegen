@@ -1,7 +1,5 @@
 # TRPC Codegen
 
----
-
 Aims to generate commonly used tRPC endpoints, such as
 
 - CRUD (Create, Read, Update, Delete)
