@@ -84,3 +84,9 @@ async function demo() {
     person.pet_name;
   }
 }
+
+// You can extract the select, insert and update interfaces like this
+// if you want (you don't need to):
+export type Person = Selectable<PersonTable>;
+export type InsertablePerson = Insertable<PersonTable>;
+export type UpdateablePerson = Updateable<PersonTable>;
