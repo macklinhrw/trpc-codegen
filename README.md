@@ -9,5 +9,5 @@ I'm sure the scope of this project will expand as it develops.
 
 ## Resources
 
-[Typescript Compiler API Guide](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API)
-[Tiny TRPC Client Article](https://trpc.io/blog/tinyrpc-client)
+- [Typescript Compiler API Guide](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API)
+- [Tiny TRPC Client Article](https://trpc.io/blog/tinyrpc-client)
