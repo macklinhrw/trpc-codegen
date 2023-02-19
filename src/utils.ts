@@ -20,6 +20,7 @@ export const makeVariableInitializer = (
   return varDecList;
 };
 
+// Import flow functions ==
 // createImportDeclaration
 // createImportClause
 // createNamedImports
@@ -30,13 +31,6 @@ export const makeNamespaceImport = (
   name: string,
   moduleName: string,
 ): ts.ImportDeclaration => {
-  // const isTrpc = tsf.createImportSpecifier(
-  //   false,
-  //   undefined,
-  //   tsf.createIdentifier("trpc"),
-  // );
-  // const nbTrpc = tsf.createNamedImports([isTrpc]);
-
   const impNsp = tsf.createNamespaceImport(tsf.createIdentifier(name));
   const impCl = tsf.createImportClause(false, undefined, impNsp);
   const impDec = tsf.createImportDeclaration(
@@ -64,6 +58,8 @@ export const makeBindingListImport = (
     impSps.push(impSp);
   }
   const impNm = tsf.createNamedImports(impSps);
+
+  // add name identifier here for `import outerName, { name1, name2, ... } from "moduleName"`
   const impCl = tsf.createImportClause(false, undefined, impNm);
   const impDec = tsf.createImportDeclaration(
     undefined,
