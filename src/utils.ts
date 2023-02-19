@@ -1,10 +1,11 @@
-import ts, { NodeFlags } from "typescript";
+import ts, { NodeFlags, factory as tsf } from "typescript";
 import fs from "fs";
 
+// i.e., `let name = "test"`
 export const makeVariableInitializer = (
+  type: "let" | "const",
   name: string,
   to: ts.Expression,
-  type: "let" | "const",
 ): ts.VariableDeclarationList => {
   const flag = type == "let" ? NodeFlags.Let : NodeFlags.Const;
 
@@ -19,8 +20,63 @@ export const makeVariableInitializer = (
   return varDecList;
 };
 
+// createImportDeclaration
+// createImportClause
+// createNamedImports
+// createImportSpecifier
+
+// i.e, `import * as name from "moduleName"`
+export const makeNamespaceImport = (
+  name: string,
+  moduleName: string,
+): ts.ImportDeclaration => {
+  // const isTrpc = tsf.createImportSpecifier(
+  //   false,
+  //   undefined,
+  //   tsf.createIdentifier("trpc"),
+  // );
+  // const nbTrpc = tsf.createNamedImports([isTrpc]);
+
+  const impNsp = tsf.createNamespaceImport(tsf.createIdentifier(name));
+  const impCl = tsf.createImportClause(false, undefined, impNsp);
+  const impDec = tsf.createImportDeclaration(
+    undefined,
+    impCl,
+    tsf.createStringLiteral(moduleName),
+    undefined,
+  );
+
+  return impDec;
+};
+
+// i.e., `import { name1, name2, ... } from "moduleName"
+export const makeBindingListImport = (
+  names: string[],
+  moduleName: string,
+): ts.ImportDeclaration => {
+  const impSps: ts.ImportSpecifier[] = [];
+  for (const name of names) {
+    const impSp = tsf.createImportSpecifier(
+      false,
+      undefined,
+      tsf.createIdentifier(name),
+    );
+    impSps.push(impSp);
+  }
+  const impNm = tsf.createNamedImports(impSps);
+  const impCl = tsf.createImportClause(false, undefined, impNm);
+  const impDec = tsf.createImportDeclaration(
+    undefined,
+    impCl,
+    tsf.createStringLiteral(moduleName),
+    undefined,
+  );
+
+  return impDec;
+};
+
 export const writeCodeToFile = (statements: ts.Statement[], file: string) => {
-  fs.writeFileSync("test.ts", "");
+  fs.writeFileSync(file, "");
 
   const resultFile = ts.createSourceFile(
     "someFileName.ts",
@@ -34,7 +90,7 @@ export const writeCodeToFile = (statements: ts.Statement[], file: string) => {
     newLine: ts.NewLineKind.LineFeed,
   });
 
-  for (let statement of statements) {
+  for (const statement of statements) {
     let result = printer.printNode(
       ts.EmitHint.Unspecified,
       statement,
