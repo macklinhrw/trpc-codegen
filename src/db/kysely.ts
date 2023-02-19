@@ -18,11 +18,17 @@ const db = new Kysely<DB>({
 });
 
 const main = async () => {
+  //const res = await db.selectFrom('Book').innerJoin((eb) => eb.selectFrom('_BookToModule').whereRef('A', '=', 'B').selectAll().executeTakeFirst(), (join) => join.onTrue()).selectAll().executeTakeFirst()
   // const res = await db
-  //   .selectFrom("Topic_Page")
-  //   .innerJoin("Route as r", "r.id", "Topic_Page.routeId")
+  //   .selectFrom("Book")
+  //   .innerJoin("Route as r", "r.id", "Book.routeId")
   //   .selectAll()
-  //   .executeTakeFirst();
+  //   .execute();
+
+  // db.selectFrom("Book").innerJoin(
+  //   (eb) => eb.selectFrom("Route as r").whereRef("", "=", ""),
+  //   (j) => j.onTrue(),
+  // );
 
   db.destroy();
 };
