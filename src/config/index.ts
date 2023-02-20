@@ -26,9 +26,12 @@ export const makeConfig = <ProcedureList extends readonly string[]>(
   const useConfig = (
     func: (procedures: ProcedureItems) => Omit<GenConfig, "procedures">,
   ) => {
-    // TODO: get rid of this any type?
-    const transformed: Record<string, any> = func(transform(pList));
+    const transformed: Omit<GenConfig, "procedures"> & {
+      procedures?: readonly string[];
+    } = func(transform(pList));
+
     transformed.procedures = pList;
+
     return transformed as GenConfig;
   };
 
