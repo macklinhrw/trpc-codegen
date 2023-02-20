@@ -6,7 +6,6 @@ import {
   writeCodeToFile,
 } from "./utils/utils";
 import {} from "kysely";
-import { Router } from "@trpc/server/dist/deprecated/router";
 import { GenConfig } from "./config/types";
 import KyselyAdapter from "./adapters/kysely";
 import { makeConfig } from "./config";
@@ -19,7 +18,8 @@ const main = async (config: GenConfig) => {
   // const obj = tsf.createObjectLiteralExpression([d1], true);
   // const kVar = makeVariableInitializer("let", "kVar", obj);
   // const s = tsf.createVariableStatement(undefined, kVar);
-  const endpointsList = Object.keys(config.endpoints);
+
+  // const endpointsList = Object.keys(config.endpoints);
 
   const trpcImport = makeNamespaceImport("trpc", "@trpc/server");
   const procs = makeBindingListImport(
@@ -37,4 +37,4 @@ const config = makeConfig(["publicProcedure"] as const)((procedures) => ({
   adapter: KyselyAdapter,
 }));
 console.log(config);
-// main(config);
+main(config);
