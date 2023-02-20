@@ -1,2 +1,2 @@
 import * as trpc from "@trpc/server";
-import { publicProcedure, router } from "./trpc";
+import { publicProcedure, anotherProcedure, router } from "./trpc";

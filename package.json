@@ -17,7 +17,7 @@
     "kysely-codegen": "^0.9.0",
     "prettier": "^2.8.4",
     "tsx": "^3.12.3",
-    "typescript": "*"
+    "typescript": "^5.0.0-beta"
   },
   "dependencies": {
     "@trpc/server": "^10.12.0",
